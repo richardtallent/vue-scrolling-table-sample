@@ -20,7 +20,7 @@
 					and the component allows the body to be scrolled horizontally and vertically as needed.</p>
 	
 					<p>For detailed documentation, please see <a href="https://github.com/richardtallent/vue-scrolling-table">the Github
-					repository</a>. (The repo for this page is also <a href="https://github.com/richardtallent/vue-scrolling-table">available on Github</a>.)</p>
+					repository</a>. (The repo for this page is also <a href="https://github.com/richardtallent/vue-scrolling-table-sample">available on Github</a>.)</p>
 					
 					<p>Note: this page uses the Bulma library for basic styling, and that styling overides a few
 					details of the default vue-scrolling-table, notably removing the border from the header cells
