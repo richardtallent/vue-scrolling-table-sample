@@ -29,7 +29,14 @@
 					<h2 class="title is-2 is-spaced">Demo!</h2>
 
 					<div class="box">
-						<vue-scrolling-table>
+						<vue-scrolling-table
+							:scroll-horizontal="scrollHorizontal"
+							:scroll-vertical="scrollVertical"
+							:sync-header-scroll="syncHeaderScroll"
+							:sync-footer-scroll="syncFooterScroll"
+							:include-footer="includeFooter"
+							:dead-area-color="deadAreaColor"
+							:class="{ freezeFirstColumn:freezeFirstColumn }">
 							<template slot="thead">
 								<tr>
 									<th v-for="col in columns" 
@@ -44,9 +51,22 @@
 										:key="col.id">{{ item[col.id] }}</td>
 								</tr>
 							</template>
+							<template slot="tfoot">
+								<tr><th :colspan="columns.length">My footer text</th></tr>
+							</template>
 						</vue-scrolling-table>
 					</div>
 					<p>Fake sample data courtesy <a href="https://www.generatedata.com/">generatedata.com</a>.</p>
+
+					<h3>Play with the options!</h3>
+					<div class="field"><div class="control"><label class="checkbox"><input v-model="scrollVertical" type="checkbox"> Vertical scrolling</label></div></div>
+					<div class="field"><div class="control"><label class="checkbox"><input v-model="scrollHorizontal" type="checkbox"> Horizontal scrolling</label></div></div>
+					<div class="field"><div class="control"><label class="checkbox"><input v-model="includeFooter" type="checkbox"> Show footer</label></div></div>
+					<div class="field"><div class="control"><label class="checkbox"><input v-model="syncHeaderScroll" type="checkbox"> Sync horizontal header scrolling with body</label></div></div>
+					<div class="field"><div class="control"><label class="checkbox"><input v-model="syncFooterScroll" type="checkbox"> Sync horizontal footer scrolling with body</label></div></div>
+					<div class="field"><div class="control"><label class="text"><input type="color" v-model="deadAreaColor"> Dead area color</label></div></div>
+					<div class="field"><div class="control"><label class="text"><input type="number" v-model="maxRows" min="0" max="100"> Rows to show (0-100)</label></div></div>
+					<div class="field"><div class="control"><label class="checkbox"><input v-model="freezeFirstColumn" type="checkbox"> Freeze first columm (webkit only)</label></div></div>
 
 					<h2 class="title is-2 is-spaced">Contact</h2>
 
@@ -60,8 +80,8 @@
 	</div>
 </template>
 <script>
-import VueScrollingTable from "vue-scrolling-table"
-//import VueScrollingTable from "../../vue-scrolling-table/src/VueScrollingTable.vue"
+//import VueScrollingTable from "vue-scrolling-table"
+import VueScrollingTable from "../../vue-scrolling-table/src/VueScrollingTable.vue"
 
 export default {
 	name: "SampleApp",
@@ -70,6 +90,14 @@ export default {
 	},
 	data: function() {
 		return {
+			scrollVertical: true,
+			scrollHorizontal: true,
+			syncHeaderScroll: true,
+			syncFooterScroll: true,
+			includeFooter: true,
+			deadAreaColor: "#DDDDDD",
+			maxRows: 100,
+			freezeFirstColumn: false,
 			columns: [
 				{ id: "id", title: "ID", cssClasses: "" },
 				{ id: "firstName", title: "First Name", cssClasses: "" },
@@ -83,7 +111,7 @@ export default {
 				{ id: "phone", title: "Phone", cssClasses: "" },
 				{ id: "email", title: "Email", cssClasses: "" },
 			],
-			items: [
+			allItems: [
 				{
 					id: 1,
 					firstName: "Howard",
@@ -1487,12 +1515,38 @@ export default {
 			],
 		}
 	},
+	computed: {
+		items() {
+			return this.allItems.slice(0, this.maxRows)
+		},
+	},
 }
 </script>
 <style>
 table.scrolling .w2 {
 	width: 20em;
 	min-width: 20em;
+	max-width: 20em;
+}
+
+table.scrolling tfoot tr th {
+	width: 130em;
+	min-width: 130em;
+	max-width: 130em;
+}
+
+table.freezeFirstColumn thead tr,
+table.freezeFirstColumn tbody tr {
+	display: block;
+}
+
+table.freezeFirstColumn thead td:first-child,
+table.freezeFirstColumn tbody td:first-child,
+table.freezeFirstColumn thead th:first-child,
+table.freezeFirstColumn tbody th:first-child {
+	position: sticky;
+	position: -webkit-sticky;
+	left: 0;
 }
 
 * {
