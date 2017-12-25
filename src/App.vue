@@ -80,8 +80,8 @@
 	</div>
 </template>
 <script>
-//import VueScrollingTable from "vue-scrolling-table"
-import VueScrollingTable from "../../vue-scrolling-table/src/VueScrollingTable.vue"
+import VueScrollingTable from "vue-scrolling-table"
+//import VueScrollingTable from "../../vue-scrolling-table/src/VueScrollingTable.vue"
 
 export default {
 	name: "SampleApp",
