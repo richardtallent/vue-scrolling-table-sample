@@ -1538,6 +1538,7 @@ table.scrolling tfoot tr th {
 table.freezeFirstColumn thead tr,
 table.freezeFirstColumn tbody tr {
 	display: block;
+	width: min-content;
 }
 
 table.freezeFirstColumn thead td:first-child,
