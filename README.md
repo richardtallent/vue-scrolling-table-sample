@@ -20,7 +20,8 @@ npm run dev
 
 ## Release History
 
-| Date       | Version | Notes                              |
-| ---------- | ------- | ---------------------------------- |
-| 2017.12.24 | 0.1.0   | First published version            |
-| 2017.12.25 | 0.2.0   | Changes for component version 0.2  |
+| Date       | Version | Notes                             |
+| ---------- | ------- | --------------------------------- |
+| 2017.12.24 | 0.1.0   | First published version           |
+| 2017.12.25 | 0.2.0   | Changes for component version 0.2 |
+| 2020.02.02 | 1.0.0   | Changes for component version 1.0 |

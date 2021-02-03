@@ -1,7 +1,5 @@
 <template>
-	
 	<div id="app">
-
 		<section class="hero is-medium is-info is-bold">
 			<div class="hero-body">
 				<div class="container">
@@ -14,17 +12,20 @@
 		<section class="section">
 			<div class="container">
 				<div class="content">
-					
-					<p><b>vue-scrolling-table</b> is a Vue that provides a flexbox-based table control, where the
-					header, body, and footer of the control are rendered via named slots for maximum flexibility,
-					and the component allows the body to be scrolled horizontally and vertically as needed.</p>
-	
-					<p>For detailed documentation, please see <a href="https://github.com/richardtallent/vue-scrolling-table">the Github
-					repository</a>. (The repo for this page is also <a href="https://github.com/richardtallent/vue-scrolling-table-sample">available on Github</a>.)</p>
-					
-					<p>Note: this page uses the Bulma library for basic styling, and that styling overides a few
-					details of the default vue-scrolling-table, notably removing the border from the header cells
-					and adding rounded corners.</p>
+					<p>
+						<b>vue-scrolling-table</b> is a Vue that provides a flexbox-based table control, where the header, body, and footer of the control are rendered via named slots for
+						maximum flexibility, and the component allows the body to be scrolled horizontally and vertically as needed.
+					</p>
+
+					<p>
+						For detailed documentation, please see <a href="https://github.com/richardtallent/vue-scrolling-table">the Github repository</a>. (The repo for this page is also
+						<a href="https://github.com/richardtallent/vue-scrolling-table-sample">available on Github</a>.)
+					</p>
+
+					<p>
+						Note: this page uses the Bulma library for basic styling, and that styling overides a few details of the default vue-scrolling-table, notably removing the border from
+						the header cells and adding rounded corners.
+					</p>
 
 					<h2 class="title is-2 is-spaced">Demo!</h2>
 
@@ -36,47 +37,75 @@
 							:sync-footer-scroll="syncFooterScroll"
 							:include-footer="includeFooter"
 							:dead-area-color="deadAreaColor"
-							:class="{ freezeFirstColumn:freezeFirstColumn }">
-							<template slot="thead">
+							:class="{ freezeFirstColumn: freezeFirstColumn }"
+						>
+							<template #thead>
 								<tr>
-									<th v-for="col in columns" 
-									:class="col.cssClasses"
-									:key="col.id">{{ col.title }}</th>
+									<th v-for="col in columns" :class="col.cssClasses" :key="col.id">{{ col.title }}</th>
 								</tr>
 							</template>
-							<template slot="tbody">
+							<template #tbody>
 								<tr v-for="item in items" :key="item.id">
-									<td v-for="col in columns"
-										:class="col.cssClasses"
-										:key="col.id">{{ item[col.id] }}</td>
+									<td v-for="col in columns" :class="col.cssClasses" :key="col.id">{{ item[col.id] }}</td>
 								</tr>
 							</template>
-							<template slot="tfoot">
-								<tr><th :colspan="columns.length">My footer text</th></tr>
+							<template #tfoot>
+								<tr>
+									<th :colspan="columns.length">My footer text</th>
+								</tr>
 							</template>
 						</vue-scrolling-table>
 					</div>
 					<p>Fake sample data courtesy <a href="https://www.generatedata.com/">generatedata.com</a>.</p>
 
 					<h3>Play with the options!</h3>
-					<div class="field"><div class="control"><label class="checkbox"><input v-model="scrollVertical" type="checkbox"> Vertical scrolling</label></div></div>
-					<div class="field"><div class="control"><label class="checkbox"><input v-model="scrollHorizontal" type="checkbox"> Horizontal scrolling</label></div></div>
-					<div class="field"><div class="control"><label class="checkbox"><input v-model="includeFooter" type="checkbox"> Show footer</label></div></div>
-					<div class="field"><div class="control"><label class="checkbox"><input v-model="syncHeaderScroll" type="checkbox"> Sync horizontal header scrolling with body</label></div></div>
-					<div class="field"><div class="control"><label class="checkbox"><input v-model="syncFooterScroll" type="checkbox"> Sync horizontal footer scrolling with body</label></div></div>
-					<div class="field"><div class="control"><label class="text"><input type="color" v-model="deadAreaColor"> Dead area color</label></div></div>
-					<div class="field"><div class="control"><label class="text"><input type="number" v-model="maxRows" min="0" max="100"> Rows to show (0-100)</label></div></div>
-					<div class="field"><div class="control"><label class="checkbox"><input v-model="freezeFirstColumn" type="checkbox"> Freeze first columm (webkit only)</label></div></div>
+					<div class="field">
+						<div class="control">
+							<label class="checkbox"><input v-model="scrollVertical" type="checkbox" /> Vertical scrolling</label>
+						</div>
+					</div>
+					<div class="field">
+						<div class="control">
+							<label class="checkbox"><input v-model="scrollHorizontal" type="checkbox" /> Horizontal scrolling</label>
+						</div>
+					</div>
+					<div class="field">
+						<div class="control">
+							<label class="checkbox"><input v-model="includeFooter" type="checkbox" /> Show footer</label>
+						</div>
+					</div>
+					<div class="field">
+						<div class="control">
+							<label class="checkbox"><input v-model="syncHeaderScroll" type="checkbox" /> Sync horizontal header scrolling with body</label>
+						</div>
+					</div>
+					<div class="field">
+						<div class="control">
+							<label class="checkbox"><input v-model="syncFooterScroll" type="checkbox" /> Sync horizontal footer scrolling with body</label>
+						</div>
+					</div>
+					<div class="field">
+						<div class="control">
+							<label class="text"><input type="color" v-model="deadAreaColor" /> Dead area color</label>
+						</div>
+					</div>
+					<div class="field">
+						<div class="control">
+							<label class="text"><input type="number" v-model="maxRows" min="0" max="100" /> Rows to show (0-100)</label>
+						</div>
+					</div>
+					<div class="field">
+						<div class="control">
+							<label class="checkbox"><input v-model="freezeFirstColumn" type="checkbox" /> Freeze first columm (webkit only)</label>
+						</div>
+					</div>
 
 					<h2 class="title is-2 is-spaced">Contact</h2>
 
-					<p>For more information, please feel free to reach out to me using Github issues, or via the
-					contact methods on my <a href="https://www.tallent.us">home page</a>.</p>
-
+					<p>For more information, please feel free to reach out to me using Github issues, or via the contact methods on my <a href="https://www.tallent.us">home page</a>.</p>
 				</div>
 			</div>
 		</section>
-
 	</div>
 </template>
 <script>
