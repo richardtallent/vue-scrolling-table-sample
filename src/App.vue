@@ -13,8 +13,8 @@
 			<div class="container">
 				<div class="content">
 					<p>
-						<b>vue-scrolling-table</b> is a Vue that provides a flexbox-based table control, where the header, body, and footer of the control are rendered via named slots for
-						maximum flexibility, and the component allows the body to be scrolled horizontally and vertically as needed.
+						<b>vue-scrolling-table</b> is a Vue 3 component that provides a flexbox-based table control, where the header, body, and footer of the control are rendered via named
+						slots for maximum flexibility, and the component allows the body to be scrolled horizontally and vertically as needed.
 					</p>
 
 					<p>
@@ -109,6 +109,7 @@
 	</div>
 </template>
 <script>
+import "/node_modules/vue-scrolling-table/dist/style.css"
 import VueScrollingTable from "vue-scrolling-table"
 //import VueScrollingTable from "../../vue-scrolling-table/src/VueScrollingTable.vue"
 
@@ -117,7 +118,7 @@ export default {
 	components: {
 		VueScrollingTable,
 	},
-	data: function() {
+	data: function () {
 		return {
 			scrollVertical: true,
 			scrollHorizontal: true,
